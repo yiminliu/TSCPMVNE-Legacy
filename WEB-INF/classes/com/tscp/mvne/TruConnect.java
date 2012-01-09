@@ -500,6 +500,7 @@ public class TruConnect implements TscpMvne {
 		pmttransaction.setSessionId(sessionId);
 		pmttransaction.setPmtId(creditCard.getPaymentid());
 		pmttransaction.setPaymentAmount(paymentAmount);
+		pmttransaction.setAccountNo(account.getAccountno());
 
 		pmttransaction.savePaymentTransaction();
 		logger.info("Transaction " + pmttransaction.getTransId() + " has been entered and is beginning");
@@ -854,6 +855,7 @@ public class TruConnect implements TscpMvne {
 		pmttransaction.setSessionId(sessionId);
 		pmttransaction.setPmtId(paymentId);
 		pmttransaction.setPaymentAmount(paymentAmount);
+		pmttransaction.setAccountNo(account.getAccountno());
 
 		pmttransaction.savePaymentTransaction();
 		logger.info("Transaction " + pmttransaction.getTransId() + " has been entered and is beginning");

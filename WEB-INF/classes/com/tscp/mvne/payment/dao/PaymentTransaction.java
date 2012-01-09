@@ -31,6 +31,7 @@ public class PaymentTransaction {
 
 	private String paymentSource;
 	private String paymentMethod;
+	private int accountNo;
 
 	public PaymentTransaction() {
 
@@ -139,6 +140,14 @@ public class PaymentTransaction {
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
+	
+	 public int getAccountNo() {
+			return accountNo;
+		}
+
+		public void setAccountNo(int accountNo) {
+			this.accountNo = accountNo;
+		}
 
 	public void savePaymentTransaction() throws PaymentException {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
