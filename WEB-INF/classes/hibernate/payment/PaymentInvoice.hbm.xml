@@ -1,0 +1,52 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.payment.dao.PaymentInvoice">
+
+	<class name="com.tscp.mvne.payment.dao.PaymentInvoice">
+		<id name="paymentInvoiceId" column="pmtinvoice_id"/>
+		<property name="transId" column="trans_id"/>
+		<property name="notificationId" column="notification_id"/>
+		<property name="paymentUnitConfirmation" column="pmt_unit_confirmation"/>
+		<property name="invoiceNumber" column="invoice_number"/>
+		<property name="paymentMethod" column="pmt_method"/>
+		<property name="paymentSource" column="pmt_source"/>
+		<property name="invoiceBody" column="email_body"/>
+	</class>
+	
+	<sql-query name="fetch_pmt_invoice" callable="true">
+		<return class="com.tscp.mvne.payment.dao.PaymentInvoice">
+			<return-property name="paymentInvoiceId" column="pmtinvoice_id"/>
+			<return-property name="transId" column="trans_id"/>
+			<return-property name="notificationId" column="notification_id"/>
+			<return-property name="paymentUnitConfirmation" column="pmt_unit_confirmation"/>
+			<return-property name="invoiceNumber" column="invoice_number"/>
+			<return-property name="paymentMethod" column="pmt_method"/>
+			<return-property name="paymentSource" column="pmt_source"/>
+			<return-property name="invoiceBody" column="email_body"/>
+		</return>
+		{ call MVNE_API_PKG.fetch_pmt_invoice(?,:in_cust_id,:in_trans_id) }
+	</sql-query>
+
+	<sql-query name="ins_pmt_invoice" callable="true">
+		<return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+			<return-property name="status" column="status"/>
+			<return-property name="mvnemsg" column="mvnemsg"/>
+			<return-property name="mvnemsgcode" column="mvnemsgcode"/>
+		</return>
+		{ call MVNE_API_PKG.INS_PMT_INVOICE(?) }
+	</sql-query>
+
+	<sql-query name="upd_pmt_invoice" callable="true">
+		<return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+			<return-property name="status" column="status"/>
+			<return-property name="mvnemsg" column="mvnemsg"/>
+			<return-property name="mvnemsgcode" column="mvnemsgcode"/>
+		</return>
+		{ call MVNE_API_PKG.UPD_PMT_INVOICE(?,:in_pmtinvoice_id,:in_trans_id,:in_notification_id) }
+	</sql-query>
+	
+	
+</hibernate-mapping>

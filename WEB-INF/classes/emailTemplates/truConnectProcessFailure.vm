@@ -1,0 +1,25 @@
+<div style="color:#306EFF; font-size:1.25em; background:#EAEAEA">
+<b>TruConnect Service Processing Error</b> 
+</div> 
+<p>An error was encountered when processing running TruConnect Backend Process.</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<i> ${error} </i></p>
+<p>Below are the service details that accompany the action that was attempted:</p>
+ 
+<p>
+	<table border="1"> 
+		<th>Customer Name</th>
+		<th>Customer Id</th>
+		<th>Account</th> 
+		<th>TN</th> 
+		<th>ESN</th> 
+		<th>Action</th> 
+		<tr> 
+			<td> ${userName} </td>
+			<td> ${custId} </td>
+			<td> ${accountno} </td> 
+			<td> ${mdn} </td>  
+			<td> ${esn} </td>  
+			<td> ${action} </td>  
+		</tr> 
+	</table> 
+</p> 

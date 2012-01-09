@@ -1,0 +1,39 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.payment.dao">
+
+  <class name="com.tscp.mvne.payment.dao.PaymentUnitResponse">
+    <id name="transid" column="transid" />
+    <property name="confcode" column="confcode" />
+    <property name="confdescr" column="confdescr" />
+    <property name="authcode" column="authcode" />
+    <property name="cvvcode" column="cvvcode" />
+  </class>
+
+  <sql-query name="sbt_pmt_cc_info" callable="true">
+    <return class="com.tscp.mvne.payment.dao.PaymentUnitResponse">
+      <return-property name="transid" column="transid" />
+      <return-property name="confcode" column="confcode" />
+      <return-property name="confdescr" column="confdescr" />
+      <return-property name="authcode" column="authcode" />
+      <return-property name="cvvcode" column="cvvcode" />
+    </return>
+    { call MVNE_API_PKG.SBT_PMT_CC_INFO(?,:in_cardno,:in_cardexpdt,:in_seccode,:in_pymntamt,:in_zip,:in_cardholder,:in_street) }
+  </sql-query>
+
+  <sql-query name="sbt_pmt_info" callable="true">
+    <return class="com.tscp.mvne.payment.dao.PaymentUnitResponse">
+      <return-property name="transid" column="transid" />
+      <return-property name="confcode" column="confcode" />
+      <return-property name="confdescr" column="confdescr" />
+      <return-property name="authcode" column="authcode" />
+      <return-property name="cvvcode" column="cvvcode" />
+    </return>
+    { call MVNE_API_PKG.SBT_PMT_INFO(?,:in_cust_id,:in_pmt_id,:in_pymntamt) }
+  </sql-query>
+
+
+</hibernate-mapping>

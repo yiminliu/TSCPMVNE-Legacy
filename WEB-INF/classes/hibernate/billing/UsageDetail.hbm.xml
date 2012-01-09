@@ -1,0 +1,37 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.billing.dao">
+
+  <class name="com.tscp.mvne.billing.dao.UsageDetail">
+    <id name="dateAndTime" column="date_and_time" />
+    <property name="usageType" column="type" />
+    <property name="rate" column="rate" />
+    <property name="usageAmount" column="usage" />
+    <property name="dollarAmount" column="amount" />
+    <property name="discount" column="discount" />
+    <property name="startTime" column="start_time" />
+    <property name="endTime" column="end_time" />
+    <property name="notes" column="notes" />
+    <property name="balance" column="balance" />
+  </class>
+
+  <sql-query name="sp_fetch_charge_history" callable="true">
+    <return class="com.tscp.mvne.billing.dao.UsageDetail">
+      <return-property name="dateAndTime" column="date_and_time" />
+      <return-property name="usageType" column="type" />
+      <return-property name="usageAmount" column="usage" />
+      <return-property name="rate" column="rate" />
+      <return-property name="dollarAmount" column="amount" />
+      <return-property name="discount" column="discount" />
+      <return-property name="startTime" column="start_time" />
+      <return-property name="endTime" column="end_time" />
+      <return-property name="notes" column="notes" />
+      <return-property name="balance" column="balance" />
+    </return>
+    { call sp_fetch_charge_history(?,:in_account_no,:in_external_id) }
+  </sql-query>
+
+</hibernate-mapping>

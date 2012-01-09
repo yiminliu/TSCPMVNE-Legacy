@@ -1,0 +1,69 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.payment.dao">
+
+  <class name="com.tscp.mvne.payment.dao.CreditCard">
+    <id name="paymentid" column="pmt_id" />
+    <property name="alias" column="pmt_alias" />
+    <property name="address1" column="bill_addr1" />
+    <property name="address2" column="bill_addr2" />
+    <property name="city" column="bill_city" />
+    <property name="state" column="bill_state" />
+    <property name="zip" column="bill_zip" />
+    <property name="nameOnCreditCard" column="cust_name" />
+    <property name="creditCardNumber" column="creditcard_no" />
+    <property name="verificationcode" column="sec_code" />
+    <property name="expirationDate" column="exp_dt" />
+    <property name="isDefault" column="is_default" />
+  </class>
+
+  <sql-query name="ins_pmt_cc_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.INS_PMT_CC_INFO(?,:in_cust_name,:in_addr1,:in_addr2,:in_city,:in_state,:in_zip,:in_cardno,:in_exp_dt,:in_sec_code) }
+  </sql-query>
+
+  <sql-query name="fetch_pmt_cc_info" callable="true">
+    <return class="com.tscp.mvne.payment.dao.CreditCard">
+      <return-property name="paymentid" column="pmt_id" />
+      <return-property name="alias" column="pmt_alias" />
+      <return-property name="nameOnCreditCard" column="cust_name" />
+      <return-property name="address1" column="bill_addr1" />
+      <return-property name="address2" column="bill_addr2" />
+      <return-property name="city" column="bill_city" />
+      <return-property name="state" column="bill_state" />
+      <return-property name="zip" column="bill_zip" />
+      <return-property name="creditCardNumber" column="creditcard_no" />
+      <return-property name="expirationDate" column="exp_dt" />
+      <return-property name="verificationcode" column="sec_code" />
+      <return-property name="isDefault" column="is_default" />
+    </return>
+    { call MVNE_API_PKG.FETCH_PMT_CC_INFO(?, :in_pmt_id) }
+  </sql-query>
+
+  <sql-query name="del_pmt_cc_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.del_pmt_cc_info(?,:in_payment_id) }
+  </sql-query>
+
+  <sql-query name="upd_pmt_cc_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call
+    MVNE_API_PKG.upd_pmt_cc_info(?,:in_pmt_id,:in_cust_name,:in_addr1,:in_addr2,:in_city,:in_state,:in_zip,:in_cardno,:in_exp_dt,:in_sec_code) }
+  </sql-query>
+
+</hibernate-mapping>

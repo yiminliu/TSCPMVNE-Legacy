@@ -1,0 +1,64 @@
+<html>
+<body>
+    <div style="width:750px; margin:0px auto;" 
+    <a href="${truconnectManageSite}"> 
+    <img class="logo" src="https://activate.truconnect.com/TruConnect/static/images/logo_s1.jpg"> 
+    </a> 
+    <br>&nbsp;</br> 
+<div style="color:#2554C7; font-size:1.25em; background:#EAEAEA"> 
+<b>Your TruConnect Payment Processed</b> 
+</div> 
+<p> 
+	<b>Dear ${userName},</b> 
+</p> 
+<p>Thank you for your payment. Your payment has been successfully processed and will be noted immediately to your account. Below you will find the transaction information regarding your payment.</p> 
+
+<p> 
+	<table border=1> 
+		<th>Account</th> 
+       <th>TN</th>
+       <th>ESN</th>
+		<th>Confirmation Number</th> 
+		<th>Amount</th> 
+		<th>Payment Method</th> 
+		<th>Payment Source</th> 
+		<th>Payment Date</th> 
+		<tr>
+			<td>${accountNo}</td> 
+			<td>${tn}</td> 
+			<td>${esn}</td> 
+			<td>${confirmationNumber}</td> 
+			<td>$${amount}</td> 
+			<td>${paymentMethod}</td> 
+			<td>${paymentSource}</td> 
+			<td>${paymentDate}</td> 
+		</tr> 
+	</table> 
+</p> 
+
+<p> 
+	<a href="${truconnectManageSite}">Log in</a> and manage your billing and payment information 
+</p> 
+<p> 
+	Thank you for choosing TruConnect for your wireless and data needs. We value your business and look forward to serving you! 
+</p> 
+    <div style="background:#EFEFEF "> 
+    <p> 
+        Sincerely, 
+    <br> 
+    <b>TruConnect</b> 
+    </p> 
+    </div> 
+    <br> 
+    <div style="border-top:1px solid #999; margin-bottom:15px; font-size:15px;"> 
+    <br> 
+    <div style="color:#6D7B8D; font-size:0.8em;"> 
+        <b>Please Do Not Reply to this Message</b> 
+        <br>All replies are autmatically deleted. For questions regarding this message, refer to the contact information listed above.</br> 
+        <p><a href="www.truconnect.com">&#169;2011 TruConnect Intellectual Property.</a> All rights reserved. TruConnect, the TruConnect logo and all other TruConnect marks contained herein are trademarks of TruConnect Intellectual Property and/or TruConnect affiliated companies. Subsidiaries and affiliates of TruConnect LLC provide products and services under the TruConnect Brand</p> 
+        <p><a href="www.truconnect.com">Privacy Policy</a></p> 
+        <p>Questions? Please visit the <a href="www.truconnect.com/support">Support Page</a></p> 
+    </div> 
+</div> 
+</body> 
+</html> 

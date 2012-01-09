@@ -1,0 +1,51 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.contract">
+
+  <class name="com.tscp.mvne.contract.KenanContract">
+    <id name="contractId" column="contract_id" />
+    <property name="contractType" column="contract_type" />
+    <property name="description" column="description_text" />
+    <property name="duration" column="duration" />
+  </class>
+
+  <sql-query name="ins_coupon_contract" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.ins_coupon_contract(?,:in_account_no,:in_mdn,:in_contract_type,:in_duration) }
+  </sql-query>
+
+  <sql-query name="upd_coupon_contract" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.upd_coupon_contract(?,:in_account_no,:in_mdn,:in_contract_type,:in_contract_id,:in_duration) }
+  </sql-query>
+
+  <sql-query name="get_customer_coupons" callable="true">
+    <return class="com.tscp.mvne.contract.KenanContract">
+      <return-property name="contractType" column="contract_type" />
+      <return-property name="description" column="description_text" />
+      <return-property name="contractId" column="contract_id" />
+      <return-property name="duration" column="duration" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_customer_coupons(?,:in_account_no,:in_external_id) }
+  </sql-query>
+
+  <sql-query name="ins_coupon_payment" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.ins_coupon_payment(?,:in_account_no,:in_coupon_amount,:in_trans_date) }
+  </sql-query>
+
+</hibernate-mapping>

@@ -1,0 +1,70 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.notification.dao">
+
+  <class name="com.tscp.mvne.notification.dao.EmailNotification">
+    <id name="notificationId" column="notification_id" />
+    <property name="custId" column="cust_id" />
+    <property name="attemptNo" column="attempt_no" />
+    <property name="bcc" column="email_bcc" />
+    <property name="body" column="body" />
+    <property name="notificationCategory" column="notification_category" />
+    <property name="cc" column="email_cc" />
+    <property name="createDate" column="create_date" />
+    <property name="from" column="email_from" />
+    <property name="notificationType" column="notification_type" />
+    <property name="sentDate" column="sent_date" />
+    <property name="subject" column="email_subject" />
+    <property name="template" column="email_template" />
+    <property name="to" column="email_to" />
+  </class>
+
+  <class name="com.tscp.mvne.notification.dao.NotificationParameter">
+    <id name="notificationId" column="notification_id" />
+    <property name="key" column="param_key" />
+    <property name="value" column="param_value" />
+  </class>
+
+  <sql-query name="upd_notification_email" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call
+    MVNE_API_PKG.UPD_NOTIFICATION_EMAIL(?,:in_notification_id,:in_cust_id,:in_notification_type,:in_notification_category,:in_attempt_no,:in_email_template,:in_email_to,:in_email_cc,:in_email_bcc,:in_email_from,:in_email_subject,:in_email_body,:in_sent_date)
+    }
+  </sql-query>
+
+  <sql-query name="fetch_unsent_notification_email" callable="true">
+    <return class="com.tscp.mvne.notification.dao.EmailNotification">
+      <return-property name="notificationId" column="notification_id" />
+      <return-property name="attemptNo" column="attempt_no" />
+      <return-property name="bcc" column="email_bcc" />
+      <return-property name="body" column="body" />
+      <return-property name="notificationCategory" column="notification_category" />
+      <return-property name="cc" column="email_cc" />
+      <return-property name="createDate" column="create_date" />
+      <return-property name="from" column="email_from" />
+      <return-property name="notificationType" column="notification_type" />
+      <return-property name="sentDate" column="sent_date" />
+      <return-property name="subject" column="email_subject" />
+      <return-property name="template" column="email_template" />
+      <return-property name="to" column="email_to" />
+    </return>
+    { call MVNE_API_PKG.FETCH_UNSENT_NOTIFICATION_EMAIL(?, :in_pmt_id) }
+  </sql-query>
+
+  <sql-query name="ins_notification_param" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.INS_NOTIFICATION_PARAM(?,:in_notification_id,:in_param_key,:in_param_value) }
+  </sql-query>
+
+</hibernate-mapping>
