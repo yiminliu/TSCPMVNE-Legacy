@@ -1,0 +1,107 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.billing">
+
+  <class name="com.tscp.mvne.billing.Account">
+    <id name="accountno" column="account_no" />
+    <property name="firstname" column="BILL_FNAME" />
+    <property name="lastname" column="BILL_LNAME" />
+    <property name="contact_number" column="contact1_phone" />
+    <property name="contact_email" column="cust_email" />
+    <property name="contact_address1" column="service_address1" />
+    <property name="contact_address2" column="service_address2" />
+    <property name="contact_city" column="service_city" />
+    <property name="contact_state" column="service_state" />
+    <property name="contact_zip" column="service_zip" />
+  </class>
+
+  <class name="com.tscp.mvne.billing.api.BillName">
+    <id name="lastName" column="bill_lname" />
+    <property name="firstName" column="bill_fname" />
+  </class>
+
+  <!-- <class name="com.tscp.mvne.billing.api.CustAddress"> <id name="zip" column="cust_zip"/> <property name="address1" column="cust_address1"/> 
+    <property name="address2" column="cust_address2"/> <property name="address3" column="cust_address3"/> <property name="city" column="cust_city"/> 
+    <property name="state" column="cust_state"/> </class> -->
+
+  <class name="com.tscp.mvne.billing.ServiceInstance">
+    <id name="subscrno" column="subscr_no" />
+    <property name="externalid" column="external_id" />
+    <property name="externalidtype" column="external_id_type" />
+  </class>
+
+  <class name="com.tscp.mvne.billing.Package">
+    <id name="package_instance_id" />
+    <property name="packageid" column="package_id" />
+    <property name="package_name" column="display_value" />
+  </class>
+
+  <class name="com.tscp.mvne.billing.Component">
+    <id name="component_instance_id" column="component_instance_id" />
+    <property name="component_name" column="component_name" />
+    <property name="active_date" column="component_active_date" />
+    <property name="component_id" column="component_id" />
+  </class>
+
+  <class name="com.tscp.mvne.billing.dao.UsageSummary">
+    <id name="externalid" column="external_id" />
+    <property name="mbs" />
+    <property name="rate" />
+    <property name="dollarusage" column="dollar_usage" />
+  </class>
+
+  <sql-query name="get_cust_name" callable="true">
+    <return class="com.tscp.mvne.billing.api.BillName">
+      <return-property name="lastName" column="BILL_LNAME" />
+      <return-property name="firstName" column="BILL_FNAME" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_cust_name(?,:in_username,:in_account_no) }
+  </sql-query>
+
+  <sql-query name="get_active_services" callable="true">
+    <return class="com.tscp.mvne.billing.ServiceInstance">
+      <return-property name="subscrno" column="subscr_no" />
+      <return-property name="externalid" column="external_id" />
+      <return-property name="externalidtype" column="external_id_type" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_active_services(?,:in_username,:in_account_no) }
+  </sql-query>
+
+  <sql-query name="get_active_packages" callable="true">
+    <return class="com.tscp.mvne.billing.Package">
+      <return-property name="package_instance_id" column="package_instance_id" />
+      <return-property name="packageid" column="package_id" />
+      <return-property name="package_name" column="display_value" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_active_packages(?,:in_username,:in_account_no) }
+  </sql-query>
+
+  <sql-query name="get_active_components" callable="true">
+    <return class="com.tscp.mvne.billing.Component">
+      <return-property name="active_date" column="component_active_date" />
+      <return-property name="component_id" column="component_id" />
+      <return-property name="component_name" column="component_name" />
+      <return-property name="component_instance_id" column="component_instance_id" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_active_components(?,:in_username,:in_account_no,:in_external_id) }
+  </sql-query>
+
+  <!-- <sql-query name="get_billing_address" callable="true"> <return class="com.tscp.mvne.billing.api.CustAddress"> <return-property name="address1" 
+    column="cust_address1"/> <return-property name="address2" column="cust_address2"/> <return-property name="address3" column="cust_address3"/> <return-property 
+    name="city" column="cust_city"/> <return-property name="state" column="cust_state"/> <return-property name="zip" column="cust_zip"/> </return> { 
+    call MVNE_KENAN_FETCH_PKG.get_billing_address(?,:in_username,:in_account_no) } </sql-query> -->
+
+  <sql-query name="get_unbilled_data_mbs">
+    <return class="com.tscp.mvne.billing.dao.UsageSummary">
+      <return-property name="externalid" column="external_id" />
+      <return-property name="mbs" column="mbs" />
+      <return-property name="rate" column="rate" />
+      <return-property name="dollarusage" column="dollar_usage" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_unbilled_data_mbs(?,:in_username,:in_external_id) }
+  </sql-query>
+
+</hibernate-mapping>

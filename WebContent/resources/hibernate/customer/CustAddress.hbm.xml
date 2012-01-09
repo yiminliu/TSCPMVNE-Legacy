@@ -1,0 +1,68 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.customer.dao">
+
+  <class name="com.tscp.mvne.customer.dao.CustAddress">
+    <id name="addressId" column="address_id" />
+    <property name="custId" column="cust_id" />
+    <property name="addressLabel" column="address_label" />
+    <property name="address1" column="address1" />
+    <property name="address2" column="address2" />
+    <property name="address3" column="address3" />
+    <property name="city" column="city" />
+    <property name="state" column="state" />
+    <property name="zip" column="zip" />
+    <property name="isDefault" column="is_default" />
+  </class>
+
+  <sql-query name="fetch_cust_address" callable="true">
+    <return class="com.tscp.mvne.customer.dao.CustAddress">
+      <return-property name="addressId" column="address_id" />
+      <return-property name="custId" column="cust_id" />
+      <return-property name="addressLabel" column="address_label" />
+      <return-property name="address1" column="address1" />
+      <return-property name="address2" column="address2" />
+      <return-property name="address3" column="address3" />
+      <return-property name="city" column="city" />
+      <return-property name="state" column="state" />
+      <return-property name="zip" column="zip" />
+      <return-property name="isDefault" column="is_default" />
+    </return>
+    { call MVNE_API_PKG.FETCH_CUST_ADDRESS(?,:in_cust_id,:in_address_id) }
+  </sql-query>
+
+  <sql-query name="upd_cust_address" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call
+    MVNE_API_PKG.UPD_CUST_ADDRESS(?,:in_address_id,:in_cust_id,:in_address1,:in_address2,:in_address3,:in_city,:in_state,:in_zip,:in_address_label,:in_is_default)
+    }
+  </sql-query>
+
+  <sql-query name="ins_cust_address" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call
+    MVNE_API_PKG.INS_CUST_ADDRESS(?,:in_cust_id,:in_address1,:in_address2,:in_address3,:in_city,:in_state,:in_zip,:in_address_label,:in_is_default)
+    }
+  </sql-query>
+
+  <sql-query name="del_cust_address" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.DEL_CUST_ADDRESS(?,:in_cust_id,:in_address_id) }
+  </sql-query>
+
+</hibernate-mapping>

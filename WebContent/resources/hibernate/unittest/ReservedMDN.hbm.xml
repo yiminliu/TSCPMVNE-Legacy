@@ -1,0 +1,34 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.unittest.dao">
+
+  <class name="com.tscp.mvne.unittest.dao.ReservedMDN">
+    <id name="MDN" column="MDN" />
+    <property name="insertDate" column="insert_date" />
+    <property name="releaseDate" column="release_date" />
+    <property name="notes" column="notes" />
+  </class>
+
+  <sql-query name="sp_fetch_reserved_mdns" callable="true">
+    <return class="com.tscp.mvne.unittest.dao.ReservedMDN">
+      <return-property name="MDN" column="MDN" />
+      <return-property name="insertDate" column="insert_date" />
+      <return-property name="releaseDate" column="release_date" />
+      <return-property name="notes" column="notes" />
+    </return>
+    { call sp_fetch_reserved_mdns(?) }
+  </sql-query>
+
+  <sql-query name="sp_update_reserved_mdns" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call SP_UPDATE_RESERVED_MDNS(?,:in_mdn,:in_release_date,:in_notes) }
+  </sql-query>
+
+</hibernate-mapping>

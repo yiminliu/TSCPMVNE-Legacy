@@ -1,0 +1,45 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.payment.dao">
+
+  <class name="com.tscp.mvne.payment.dao.CustPmtMap">
+    <id name="paymentid" column="pmt_id" />
+    <property name="custid" column="cust_id" />
+    <property name="paymentalias" column="pmt_alias" />
+    <property name="paymenttype" column="pmt_type" />
+    <property name="isDefault" column="is_default" />
+  </class>
+
+  <sql-query name="ins_cust_pmt_map" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.INS_CUST_PMT_MAP(?,:in_cust_id,:in_pmt_id,:in_pmt_type,:in_pmt_alias,:in_is_default) }
+  </sql-query>
+
+  <sql-query name="fetch_cust_pmt_map" callable="true">
+    <return class="com.tscp.mvne.payment.dao.CustPmtMap">
+      <return-property name="paymentid" column="pmt_id" />
+      <return-property name="custid" column="cust_id" />
+      <return-property name="paymenttype" column="pmt_type" />
+      <return-property name="paymentalias" column="pmt_alias" />
+      <return-property name="isDefault" column="is_default" />
+    </return>
+    { call MVNE_API_PKG.FETCH_CUST_PMT_MAP(?,:in_cust_id,:in_pmt_id) }
+  </sql-query>
+
+  <sql-query name="upd_cust_pmt_map" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.UPD_CUST_PMT_MAP(?,:in_cust_id,:in_pmt_id,:in_pmt_alias,:in_is_default) }
+  </sql-query>
+
+</hibernate-mapping>

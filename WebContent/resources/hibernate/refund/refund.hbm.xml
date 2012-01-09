@@ -1,0 +1,44 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.refund">
+
+  <class name="com.tscp.mvne.refund.KenanPayment">
+    <id name="trackingId" column="tracking_id" />
+    <property name="accountNumber" column="account_no" />
+    <property name="transactionDate" column="trans_date" />
+    <property name="amount" column="trans_amount" />
+    <property name="trackingIdServer" column="tracking_id_server" />
+  </class>
+
+  <sql-query name="get_kenan_payments" callable="true">
+    <return class="com.tscp.mvne.refund.KenanPayment">
+      <return-property name="accountNumber" column="account_no" />
+      <return-property name="transactionDate" column="trans_date" />
+      <return-property name="amount" column="trans_amount" />
+      <return-property name="trackingId" column="tracking_id" />
+      <return-property name="trackingIdServer" column="tracking_id_server" />
+    </return>
+    { call MVNE_KENAN_FETCH_PKG.get_kenan_payments(?,:in_account_no) }
+  </sql-query>
+
+  <sql-query name="ins_payment_reversal" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.ins_payment_reversal(?,:in_account_no,:in_reversal_amount,:in_trans_date,:in_tracking_id,:in_bmf_trans_type) }
+  </sql-query>
+
+  <sql-query name="truconnect_pccharge_credit" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.truconnect_pccharge_credit(?,:in_cardno,:in_cardexpdt,:in_seccode,:in_pymntamt,:in_zip,:in_cardholder,:in_street) }
+  </sql-query>
+
+</hibernate-mapping>
