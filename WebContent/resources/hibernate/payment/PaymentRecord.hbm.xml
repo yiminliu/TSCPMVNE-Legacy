@@ -31,6 +31,7 @@
 			<return-property name="paymentStatus" column="pmt_status"/>
 			<return-property name="paymentUnitConfirmation" column="pmt_unit_confirmation"/>
 			<return-property name="paymentDate" column="pmt_date"/>
+			<return-property name="accountNo" column="account_no"/>	
 			<return-property name="paymentUnitMessage" column="pmt_unit_msg"/>
 			<return-property name="billingTrackingId" column="billing_tracking_id"/>
 			<return-property name="postDate" column="post_date"/>
