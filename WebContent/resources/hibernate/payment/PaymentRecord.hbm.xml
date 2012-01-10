@@ -14,6 +14,7 @@
 		<property name="paymentStatus" column="pmt_status"/>
 		<property name="paymentUnitConfirmation" column="pmt_unit_confirmation"/>
 		<property name="paymentDate" column="pmt_date"/>
+		<property name="account_no" column="account_no"/>
 		<property name="paymentUnitMessage" column="pmt_unit_msg"/>
 		<property name="billingTrackingId" column="billing_tracking_id" />
 		<property name="postDate" column="post_date"/>
