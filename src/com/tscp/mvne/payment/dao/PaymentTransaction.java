@@ -157,6 +157,7 @@ public class PaymentTransaction {
 			q.setParameter("in_session_id", getSessionId());
 			q.setParameter("in_pmt_id", getPmtId() == 0 ? "" : getPmtId());
 			q.setParameter("in_pmt_amount", getPaymentAmount());
+			q.setParameter("in_account_no", getAccountNo());
 			List<GeneralSPResponse> responseList = q.list();
 			if (responseList == null) {
 				throw new PaymentException("savePaymentTransaction", "Error creating transaction for session id :: "
