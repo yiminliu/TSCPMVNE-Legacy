@@ -338,8 +338,7 @@ public class NetworkImpl implements NetworkInterface {
     ApiSwapESNResponseHolder responseHolder = api.apIswapESN(oldNetworkInfo.getMdn(), newEsn);
     if (responseHolder != null) {
       if (!responseHolder.getStatusMessage().equals("SUCCEED")) {
-        throw new NetworkException("Error swapping to Device " + newEsn + " for MDN " + oldNetworkInfo.getMdn()
-            + "... " + responseHolder.getResponseMessage());
+        throw new NetworkException("Error swapping to Device " + newEsn + " for MDN " + oldNetworkInfo.getMdn() + "... " + responseHolder.getResponseMessage());
       } else {
         newNetworkInfo.setMdn(oldNetworkInfo.getMdn());
         newNetworkInfo.setMsid(responseHolder.getMSID());
