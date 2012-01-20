@@ -26,7 +26,7 @@ public class PaymentRecord implements Serializable {
 	private Date paymentDate;
 	private Date postDate;
 	
-	private int account_no;
+	private int accountNo;
 	
 	private String account;
 	private String paymentType;
@@ -147,12 +147,12 @@ public class PaymentRecord implements Serializable {
 		this.paymentType = paymentType;
 	}
 	
-	public int getAccount_no() {
-		return account_no;
+	public int getAccountNo() {
+		return accountNo;
 	}
 
-	public void setAccount_no(int account_no) {
-		this.account_no = account_no;
+	public void setAccountNo(int accountNo) {
+		this.accountNo = accountNo;
 	}
 	
 }
