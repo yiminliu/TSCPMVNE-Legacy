@@ -1,0 +1,195 @@
+<html>
+	<head>
+		<title>There is a problem with your account</title></head>
+		<style>
+			body {
+				margin: 10px;
+				font-family: Helvetica, verdana, arial, sans serif;
+				min-width: 600px;
+			}
+			
+			img.logo {
+				width: 200px;
+			}
+			
+			hr.top-hr {
+				border: 2px solid #18b3e9;
+				margin-left: -10px;
+				margin-right: -10px;
+			}
+			
+			hr.invoice-hr {
+				border: 1px solid #e0e0e0;
+			}
+			
+			h1 {
+				color: #0067B2;
+				font-size: 22px;
+				font-weight: 200;
+				margin-top: 40px;
+			}
+			
+			h2 {
+				color: #606060;
+				font-size: 18px;
+				font-weight: 400;
+				margin-top: 20px;
+			}
+			
+			h3 {
+				color: #a0a0a0;
+				font-weight: bold;
+				font-size: 13px;
+				margin-bottom: 10px;
+			}
+			
+			h2.invoice-h2 {
+				width: 580px;
+				margin-left: auto;
+				margin-right: auto;
+			}		
+			
+			p {
+				margin-top: 30px;
+				margin-bottom: 30px;
+				color: #808080;
+				font-size: 14px;
+			}
+			
+			p strong {
+				font-weight: normal;
+				color: black;
+			}
+			
+			p.disclaimer {
+				margin-top: 0px;
+				font-size: 12px;
+				color: #a0a0a0;
+			}
+			
+			ul {
+				font-size: 14px;
+				color: #808080;
+			}
+			
+			a {
+				color: #0067B2;
+				text-decoration: none;
+			}
+	
+			a:hover {
+				color: #404040;
+			}
+			
+			table.invoice-table {
+				margin: 0 auto 20px auto;
+				font-size: 13px;
+				width: 580px;
+				border: none;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #e0e0e0;
+				margin-bottom: 20px;
+			}
+			
+			table.last {
+				border: none;
+				padding: none;
+			}
+			
+			table.invoice-table tr {
+				vertical-align: bottom;
+			}
+
+			table.invoice-table span {
+				display: block;
+			}
+			
+			table.invoice-table td.invoice-address {
+				width: 55%;
+			}
+			
+			table.invoice-table td.invoice-details {
+				width: 15%;
+			}
+			
+			table.invoice-table td.invoice-values {
+				width: 30%;
+				text-align: right;
+			}
+			
+			table.invoice-table td.right {
+				text-align: right;
+			}
+			
+			table.invoice-table .bold {
+				font-weight: bold;
+			}
+			
+			table.invoice-table th {
+				font-weight: bold;
+			}
+			
+			table.invoice-table td.title, table.invoice-table th.title {
+				text-align: left;
+				width: 40%;
+			}
+
+			table.invoice-table td.amount, table.invoice-table th.amount {
+				text-align: right;
+				width: 20%;
+			}
+			
+			table.invoice-table td.price, table.invoice-table th.price {
+				text-align: right;
+				width: 20%;
+			}
+			
+			table.invoice-table td.total, table.invoice-table th.total {
+				text-align: right;
+				width: 20%;
+			}
+
+			table.invoice-table td.tax-name, table.invoice-table th.tax-name {
+				text-align: right;
+				width: 80%;
+			}
+
+			table.invoice-table td.tax-value, table.invoice-table th.tax-value {
+				text-align: right;
+				width: 20%;
+			}
+			
+			span.invoice-l {
+				clear: both;
+				width: 200px;
+				display: inline-block;
+			}
+			
+			span.invoice-r {
+				width: 400px;
+				display: inline-block;
+			}
+
+		</style>
+	</head>
+
+	<body style="margin: 10px; font-family: Helvetica, verdana, arial, sans serif; min-width: 600px;">
+		<img src="http://www.truconnect.com/_assets/images/core/logo_s1.jpg" class="logo"/>
+		<hr class="top-hr" style="border: 2px solid #18b3e9; margin-left: -10px; margin-right: -10px;"/>
+		<h1 style="color: #0067B2; font-size: 22px; font-weight: 200; margin-top: 40px;">Hello, ${firstName} ${lastName}</h1>
+		<h2 style="color: #606060; font-size: 18px; font-weight: 400; margin-top: 20px">Your immediate action is required to continue using your TruConnect service.</h2>
+		<p>Your TruConnect account has been temporarily suspended because we were unable to add money to your account. The payment could not be processed for the following reason:</p>
+		<p>
+			<ul>
+				<li>The transaction was not authorized by your bank.</li>
+			</ul>
+		</p>
+		<p>To resolve this problem, please sign in to your TruConnect account to <a href="${truconnectManageSite}">update your payment method</a>. If you choose not to update your payment method, your account will remain suspended your balance will expire in 60 days.</p>
+		<p>Sincerely,</p>
+		<p>TruConnect</p>
+		<h3>Manage your Account</h3>
+		<p class="disclaimer">You can make changes to your account at any time on the <a href="${truconnectManageSite}">account management page</a>. If you have lost your TruConnect device, deactivate your service immediately or contact <a href="./>account mangement page</a> or contact <a href="${truconnectSupportSite}">customer support</a> to prevent any usage being billed to your account.</p>
+		<h3>Terms & Conditions</h3>
+		<p class="disclaimer">All purchases are subject to TruConnect's <a href="${truconnectTermsAndConditionsSite}">Terms and Conditions<a/>.</p>
+	</body>
+</html>

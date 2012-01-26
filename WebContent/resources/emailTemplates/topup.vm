@@ -1,0 +1,232 @@
+<html>
+	<head>
+		<title>Thank you for your payment</title></head>
+		<style>
+			body {
+				margin: 10px;
+				font-family: Helvetica, verdana, arial, sans serif;
+				min-width: 600px;
+			}
+			
+			img.logo {
+				width: 200px;
+			}
+			
+			hr.top-hr {
+				border: 2px solid #18b3e9;
+				margin-left: -10px;
+				margin-right: -10px;
+			}
+			
+			hr.invoice-hr {
+				border: 1px solid #e0e0e0;
+			}
+			
+			h1 {
+				color: #0067B2;
+				font-size: 22px;
+				font-weight: 200;
+				margin-top: 40px;
+			}
+			
+			h2 {
+				color: #606060;
+				font-size: 18px;
+				font-weight: 400;
+				margin-top: 20px;
+			}
+			
+			h3 {
+				color: #a0a0a0;
+				font-weight: bold;
+				font-size: 13px;
+				margin-bottom: 10px;
+			}
+			
+			h2.invoice-h2 {
+				width: 580px;
+				margin-left: auto;
+				margin-right: auto;
+			}		
+			
+			p {
+				margin-top: 30px;
+				margin-bottom: 30px;
+				color: #808080;
+				font-size: 14px;
+			}
+			
+			p.disclaimer {
+				margin-top: 0px;
+				font-size: 12px;
+				color: #a0a0a0;
+			}
+			
+			a {
+				color: #0067B2;
+				text-decoration: none;
+			}
+	
+			a:hover {
+				color: #404040;
+			}
+			
+			table.invoice-table {
+				margin: 0 auto 20px auto;
+				font-size: 13px;
+				width: 580px;
+				border: none;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #e0e0e0;
+				margin-bottom: 20px;
+			}
+			
+			table.last {
+				border: none;
+				padding: none;
+			}
+			
+			table.invoice-table tr {
+				vertical-align: bottom;
+			}
+
+			table.invoice-table span {
+				display: block;
+			}
+			
+			table.invoice-table td.invoice-address {
+				width: 55%;
+			}
+			
+			table.invoice-table td.invoice-details {
+				width: 15%;
+			}
+			
+			table.invoice-table td.invoice-values {
+				width: 30%;
+				text-align: right;
+			}
+			
+			table.invoice-table td.right {
+				text-align: right;
+			}
+			
+			table.invoice-table .bold {
+				font-weight: bold;
+			}
+			
+			table.invoice-table th {
+				font-weight: bold;
+			}
+			
+			table.invoice-table td.title, table.invoice-table th.title {
+				text-align: left;
+				width: 40%;
+			}
+
+			table.invoice-table td.amount, table.invoice-table th.amount {
+				text-align: right;
+				width: 20%;
+			}
+			
+			table.invoice-table td.price, table.invoice-table th.price {
+				text-align: right;
+				width: 20%;
+			}
+			
+			table.invoice-table td.total, table.invoice-table th.total {
+				text-align: right;
+				width: 20%;
+			}
+
+			table.invoice-table td.tax-name, table.invoice-table th.tax-name {
+				text-align: right;
+				width: 80%;
+			}
+
+			table.invoice-table td.tax-value, table.invoice-table th.tax-value {
+				text-align: right;
+				width: 20%;
+			}
+			
+			span.invoice-l {
+				clear: both;
+				width: 200px;
+				display: inline-block;
+			}
+			
+			span.invoice-r {
+				width: 400px;
+				display: inline-block;
+			}
+
+		</style>
+	</head>
+
+	<body style="margin: 10px; font-family: Helvetica, verdana, arial, sans serif; min-width: 600px;">
+		<img src="http://www.truconnect.com/_assets/images/core/logo_s1.jpg" class="logo"/>
+		<hr class="top-hr" style="border: 2px solid #18b3e9; margin-left: -10px; margin-right: -10px;"/>
+		<h1 style="color: #0067B2; font-size: 22px; font-weight: 200; margin-top: 40px;">Hello, ${firstName} ${lastName}</h1>
+		<p>Thank you for using TruConnect! We noticed that the balance in your account was low, so we have topped it back up. Your payment was processed successfully and was added to the balance in your account. If you have any questions about this top-up, please review your <a href="${truconnectManageSite}">balance and recent account activity</a> or visit our <a href="${truconnectSupportSite}">support page</a>.</p>
+		<hr class="invoice-hr" style="border: 1px solid #e0e0e0;"/>
+		<center>
+		<h2 class="invoice-h2" style="width: 580px; text-align: left" align="left" width="580">Invoice Details</h2>
+		<table class="invoice-table" width="580" style="margin-top: 20px; font-size: 13px; width: 580px; border: none; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0; margin-bottom: 20px;">
+			<tr>
+				<td class="invoice-addess" width="319" align="left">
+					Invoiced To:<br/>
+					<strong>${firstName} ${lastName}</strong><br/>
+					${billAddress1}<br/>
+					${billAddress2}<br/>
+					${billCity}, ${billState} ${billZip}
+				</td>
+				<td class="invoice-details" width="87" align="left">
+					Invoice Date:<br/>
+					Invoice ID:<br/>
+					Account:<br/>
+					Billed to:
+				</td>
+				<td class="invoice-values" width="174" align="right">
+					${pmtDate}<br/>
+					${invoiceNumber}<br/>
+					${deviceLabel}<br/>
+					${pmtSource}<br/>
+				</td>
+			</tr>
+		</table>
+		<table class="invoice-table" width="580" class="invoice-table" width="580" style="margin-top: 20px; font-size: 13px; width: 580px; border: none; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0; margin-bottom: 20px;">
+			<tr class="line">
+				<th class="title" width="232" align="left">Item</th>
+				<th class="amount" width="116" align="right">Amount</th>
+				<th class="price" width="116" align="right">Unit Price</th>
+				<th class="total" width="116" align="right">Total Price</th>
+			</tr>
+			<tr class="line">
+				<td class="title" align="left">TruConnect Top-Up</td><td class="amount" align="right">${quantity}</td><td class="price" align="right">${topupAmount}</td><td class="total" align="right">${total}</td>
+			</tr>
+		</table>
+		<table class="invoice-table last" width="580" class="invoice-table" width="580" style="margin-top: 20px; font-size: 13px; width: 580px; border: none; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0; margin-bottom: 20px;">
+			<tr class="line">
+				<td class="tax-name" width="464" align="right">Sub Total</td>
+				<td class="tax-value" width="116" align="right">${subTotal}</td>
+			</tr>
+			<tr class="line">
+				<td class="tax-name" align="right">Tax (${taxRate}%)</td>
+				<td class="tax-value" align="right">${taxedAmount}</td>
+			</tr>
+			<tr class="line">
+				<td class="tax-name bold" align="right">Total</td>
+				<td class="tax-value bold" align="right">${totalAmountWithTax}</td>
+			</tr>
+		</table>
+		</center>
+		<hr class="invoice-hr" style="border: 1px solid #e0e0e0;" />
+		<p>You can update your plan and payment methods at any time on the <a href="${truconnectManageSite}">account management page</a>.</p>
+		<p>Sincerely,</p>
+		<p>TruConnect</p>
+		<h3>Manage your Account</h3>
+		<p class="disclaimer">You can make changes to your account at any time on the <a href="${truconnectManageSite}">account management page</a>. If you have lost your TruConnect device, deactivate your service immediately or contact <a href="./>account mangement page</a> or contact <a href="${truconnectSupportSite}">customer support</a> to prevent any usage being billed to your account.</p>
+		<h3>Terms & Conditions</h3>
+		<p class="disclaimer">All purchases are subject to TruConnect's <a href="${truconnectTermsAndConditionsSite}">Terms and Conditions<a/>.</p>
+	</body>
+</html>

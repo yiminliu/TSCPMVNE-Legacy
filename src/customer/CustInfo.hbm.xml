@@ -1,0 +1,25 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.customer.dao">
+
+  <class name="com.tscp.mvne.customer.dao.CustInfo">
+    <id name="custId" column="cust_id" />
+    <property name="firstName" column="first_name" />
+    <property name="middleName" column="middle_name" />
+    <property name="lastName" column="last_name" />
+  </class>
+
+  <sql-query name="fetch_cust_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.CustInfo">
+      <return-property name="custId" column="cust_id" />
+      <return-property name="firstName" column="first_name" />
+      <return-property name="middleName" column="middle_name" />
+      <return-property name="lastName" column="last_name" />
+    </return>
+    { call MVNE_API_PKG.FETCH_CUST_INFO(?,:in_cust_id) }
+  </sql-query>
+
+</hibernate-mapping>	

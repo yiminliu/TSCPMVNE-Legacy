@@ -1,0 +1,97 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.customer.dao">
+
+  <class name="com.tscp.mvne.customer.dao.DeviceInfo">
+    <id name="deviceId" column="device_id" />
+    <property name="custId" column="cust_id" />
+    <property name="deviceLabel" column="device_label" />
+    <property name="deviceValue" column="device_value" />
+    <property name="deviceStatus" column="device_status" />
+    <property name="deviceStatusId" column="device_status_id" />
+    <property name="modDate" column="mod_date" />
+    <property name="effectiveDate" column="eff_date" />
+    <property name="expirationDate" column="exp_date" />
+    <property name="accountNo" column="account_no" />
+  </class>
+
+  <class name="com.tscp.mvne.customer.dao.DeviceAssociation">
+    <id name="deviceId" column="device_id" />
+    <property name="subscrNo" column="subscr_no" />
+    <property name="modDate" column="mod_date" />
+    <property name="accountNo" column="accountNo" />
+    <property name="externalId" column="external_id" />
+    <property name="activeDate" column="active_date" />
+    <property name="inactiveDate" column="inactive_date" />
+  </class>
+
+  <sql-query name="fetch_device_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.DeviceInfo">
+      <return-property name="deviceId" column="device_id" />
+      <return-property name="custId" column="cust_id" />
+      <return-property name="deviceLabel" column="device_label" />
+      <return-property name="deviceValue" column="device_value" />
+      <return-property name="deviceStatus" column="device_status" />
+      <return-property name="deviceStatusId" column="device_status_id" />
+      <return-property name="modDate" column="mod_date" />
+      <return-property name="effectiveDate" column="eff_date" />
+      <return-property name="expirationDate" column="exp_date" />
+      <return-property name="accountNo" column="account_no" />
+    </return>
+    { call MVNE_API_PKG.FETCH_DEVICE_INFO(?,:in_cust_id,:in_device_id,:in_account_no) }
+  </sql-query>
+
+  <sql-query name="fetch_device_assoc_map" callable="true">
+    <return class="com.tscp.mvne.customer.dao.DeviceAssociation">
+      <return-property name="deviceId" column="device_id" />
+      <return-property name="subscrNo" column="subscr_no" />
+      <return-property name="modDate" column="mod_date" />
+      <return-property name="accountNo" column="account_no" />
+      <return-property name="externalId" column="external_id" />
+      <return-property name="activeDate" column="active_date" />
+      <return-property name="inactiveDate" column="inactive_date" />
+    </return>
+    { call MVNE_API_PKG.FETCH_DEVICE_ASSOC_MAP(?,:in_cust_id,:in_device_id) }
+  </sql-query>
+
+  <sql-query name="ins_device_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.INS_DEVICE_INFO(?, :in_cust_id, :in_device_label, :in_device_value, :in_account_no) }
+  </sql-query>
+
+  <sql-query name="upd_device_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.UPD_DEVICE_INFO(?, :in_device_id, :in_cust_id, :in_device_label, :in_device_value, :in_device_status_id, :in_eff_date,
+    :in_exp_date) }
+  </sql-query>
+
+  <sql-query name="del_device_info" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.DEL_DEVICE_INFO(?, :in_cust_id, :in_device_id ) }
+  </sql-query>
+
+  <sql-query name="ins_device_assoc_map" callable="true">
+    <return class="com.tscp.mvne.customer.dao.GeneralSPResponse">
+      <return-property name="status" column="status" />
+      <return-property name="mvnemsg" column="mvnemsg" />
+      <return-property name="mvnemsgcode" column="mvnemsgcode" />
+    </return>
+    { call MVNE_API_PKG.INS_DEVICE_ASSOC_MAP(?, :in_device_id, :in_subscr_no ) }
+  </sql-query>
+
+</hibernate-mapping>

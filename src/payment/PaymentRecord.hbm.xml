@@ -1,0 +1,46 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.tscp.mvne.payment.dao.PaymentRecord">
+
+  <class name="com.tscp.mvne.payment.dao.PaymentRecord">
+    <id name="transId" column="trans_id" />
+    <property name="paymentId" column="pmt_id" />
+    <property name="alias" column="pmt_alias" />
+    <property name="paymentAmount" column="pmt_amount" />
+    <property name="paymentSource" column="pmt_source" />
+    <property name="paymentStatus" column="pmt_status" />
+    <property name="paymentUnitConfirmation" column="pmt_unit_confirmation" />
+    <property name="paymentDate" column="pmt_date" />
+    <property name="accountNo" column="account_no" />
+    <property name="paymentUnitMessage" column="pmt_unit_msg" />
+    <property name="billingTrackingId" column="billing_tracking_id" />
+    <property name="postDate" column="post_date" />
+    <property name="account" column="account" />
+    <property name="paymentType" column="payment_type" />
+  </class>
+
+  <sql-query name="fetch_cust_pmt_trans" callable="true">
+    <return class="com.tscp.mvne.payment.dao.PaymentRecord">
+      <return-property name="transId" column="trans_id" />
+      <return-property name="paymentId" column="pmt_id" />
+      <return-property name="alias" column="pmt_alias" />
+      <return-property name="paymentAmount" column="pmt_amount" />
+      <return-property name="paymentSource" column="pmt_source" />
+      <return-property name="paymentStatus" column="pmt_status" />
+      <return-property name="paymentUnitConfirmation" column="pmt_unit_confirmation" />
+      <return-property name="paymentDate" column="pmt_date" />
+      <return-property name="accountNo" column="account_no" />
+      <return-property name="paymentUnitMessage" column="pmt_unit_msg" />
+      <return-property name="billingTrackingId" column="billing_tracking_id" />
+      <return-property name="postDate" column="post_date" />
+      <return-property name="account" column="account" />
+      <return-property name="paymentType" column="payment_type" />
+    </return>
+    { call MVNE_API_PKG.fetch_cust_pmt_trans(?,:in_cust_id) }
+  </sql-query>
+
+
+</hibernate-mapping>

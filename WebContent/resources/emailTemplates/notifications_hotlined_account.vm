@@ -1,0 +1,58 @@
+<html>
+<body>
+    <div style="width:750px; margin:0px auto;" 
+    <a href='https://manage.truconnect.com/TruConnect/login'> 
+    <img class='logo' src='https://activate.truconnect.com/TruConnect/static/images/logo_s1.jpg'> 
+    </a> 
+    <br>&nbsp;</br> 
+
+	<div style="color:#306EFF; font-size:1.25em; background:#EAEAEA">
+	<b>Your TruConnect Service has been Suspended</b>
+	</div>
+	<p>
+		<b>Dear ${userName},</b>
+	</p>
+	<p>Services associated with your account ${accountno} have been temporarily suspended due to lack of funds. Please add more funds your account inorder to restore service. Below you will find the device information regarding this suspension.</p>
+
+	<p>
+		<table border="1">
+			<th>Account</th>
+			<th>TN</th>
+			<th>ESN</th>
+			<th>Suspend Date</th>
+			<tr>
+				<td>${accountno}</td>
+				<td>${mdn}</td>
+				<td>${esn}</td>
+				<td>${suspendDate}</td>
+			</tr>
+		</table>
+	</p>
+
+	<p>
+		<a href="https://manage.truconnect.com/truconnect/login">Log in</a> and manage your billing and payment information
+	</p>
+	<p>
+		Thank you for choosing TruConnect for your wireless and data needs. We value your business and look forward to serving you!
+	</p>
+
+    <div style="background:#EFEFEF"> 
+    <p> 
+        Sincerely, 
+    <br> 
+    <b>TruConnect</b> 
+    </p> 
+    </div> 
+    <br> 
+    <div style="border-top:1px solid #999; margin-bottom:15px; font-size:15px;"> 
+    <br> 
+    <div style="color:#6D7B8D; font-size:0.8em;"> 
+        <b>Please Do Not Reply to this Message</b> 
+        <br>All replies are autmatically deleted. For questions regarding this message, refer to the contact information listed above.</br> 
+        <p><a href="www.truconnect.com">&copy2011 TruConnect Intellectual Property.</a> All rights reserved. TruConnect, the TruConnect logo and all other TruConnect marks contained herein are trademarks of TruConnect Intellectual Property and/or TruConnect affiliated companies. Subsidiaries and affiliates of TruConnect LLC provide products and services under the TruConnect Brand</p> 
+        <p><a href="www.truconnect.com">Privacy Policy</a></p> 
+        <p>Questions? Please visit the <a href="www.truconnect.com/support">Support Page</a></p> 
+    </div> 
+</div> 
+</body> 
+</html> 

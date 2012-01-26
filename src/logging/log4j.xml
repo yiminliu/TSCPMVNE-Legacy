@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration>
+
+  <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    <param name="Target" value="System.out" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%-5p %c{1}: %m%n" />
+    </layout>
+  </appender>
+
+  <appender name="notificationAppender" class="org.apache.log4j.RollingFileAppender">
+    <param name="maxFileSize" value="5MB" />
+    <param name="maxBackupIndex" value="20" />
+    <param name="append" value="true" />
+    <param name="encoding" value="UTF-8" />
+    <param name="File" value="${com.sun.aas.instanceRoot}/logs/notification.log" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{ISO8601} %5p %c{1}: %m%n" />
+    </layout>
+  </appender>
+
+  <appender name="tscpmvneAppender" class="org.apache.log4j.RollingFileAppender">
+    <param name="maxFileSize" value="10MB" />
+    <param name="maxBackupIndex" value="20" />
+    <param name="append" value="true" />
+    <param name="encoding" value="UTF-8" />
+    <param name="File" value="../logs/tscpmvne.log" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{ISO8601} %5p %c{1}: %m%n" />
+    </layout>
+  </appender>
+
+  <logger name="notificationLogger">
+    <level value="all" />
+    <appender-ref ref="notificationAppender" />
+  </logger>
+
+  <logger name="tscpmvneLogger">
+    <level value="all" />
+    <appender-ref ref="tscpmvneAppender" />
+  </logger>
+
+  <root>
+    <priority value="all" />
+    <appender-ref ref="console" />
+  </root>
+
+</log4j:configuration>
